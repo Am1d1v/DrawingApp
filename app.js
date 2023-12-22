@@ -5,8 +5,45 @@ const ctx = canvas.getContext('2d');
 
 let size = 10;
 let color = 'black';
+let isPressed = false;
 let x;
 let y;
+
+
+// If mouse is pressed set value isPressed to true
+canvas.addEventListener('mousedown', (event) => {
+    isPressed = true;
+
+    x = event.offsetX
+    y = event.offsetY
+})
+
+// If mouse is up set value isPressed to false
+canvas.addEventListener('mouseup', (event) => {
+    isPressed = false;
+
+    x = undefined;
+    y = undefined;
+})
+
+// If isPressed === true, we allow to draw on canvas
+canvas.addEventListener('mousemove', (event) => {
+    if(isPressed){
+        const x2 = event.offsetX;
+        const y2 = event.offsetY;
+        
+        drawCircle(x2, y2)
+
+        // If we move pressed mouse very fast it creates gaps between circles
+        // Fix gap between circles
+
+        drawLine(x, y, x2, y2);
+
+        x = x2;
+        y = y2;
+    }
+})
+
 
 //Draw Circle Function
 function drawCircle(positionX, positionY){
@@ -15,7 +52,6 @@ function drawCircle(positionX, positionY){
     ctx.fillStyle = color;
     ctx.fill();
 }
-drawCircle(100, 120);
 
 
 // Draw Line
@@ -24,7 +60,6 @@ function drawLine(x1, y1, x2, y2){
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
     ctx.strokeStyle = color;
-    ctx.lineWidth = size;
+    ctx.lineWidth = size * 2;
     ctx.stroke()
 }
-drawLine(10, 10, 300, 300)
