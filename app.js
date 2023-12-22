@@ -73,11 +73,22 @@ colorControl.addEventListener('change', (event) => {
 // Increase Size
 increaseButton.addEventListener('click', () => {
     size++;
+    if(size >= 50){
+        size = 50;
+    }
     sizeControl.innerHTML = size;
 })
 
 // Decrease Size
 decreaseButton.addEventListener('click', () => {
     size--;
+    if(size <= 1){
+        size = 1;
+    }
     sizeControl.innerHTML = size;
 })
+
+// Clear Canvas
+clear.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+});
