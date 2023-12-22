@@ -7,6 +7,36 @@
 
 body
     display: flex
+    flex-direction: column
     justify-content: center
     align-items: center
     height: 100vh
+    background-color: #a7aad3
+    overflow: hidden
+
+canvas
+    border: 2px solid #250e2e
+    height: 800px
+    width: 800px 
+
+.toolbox
+    background-color: #666cc5
+    border: 1px solid #250e2e
+    display: flex
+    width: 800px
+    padding: 1rem
+    & > *
+        background-color: #fff
+        border: none
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        padding: 3px
+        font-size: 2rem
+        height: 50px
+        width: 50px
+        margin: 0.25rem
+        cursor: pointer
+        &:last-child
+            margin-left: auto
+
